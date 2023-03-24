@@ -1,6 +1,7 @@
-# Our Requirement is to create full functional application:- 
+# Our Requirement is to create full functional application:-
+
 <hr/>
-project structure:-<hr/>
+project structure:-<br/>
 1. config <br/>
 2. controller <br/>
 3. model <br/>
@@ -11,7 +12,9 @@ project structure:-<hr/>
 8. package.json <br/>
 9. package-lock.json <br/>
 <br/>
-Next Step:- Add dependencies <br/>
+Next Step:- Add dependencies 
+<br/>
+
 ```
 {
     "dependencies":{
@@ -20,16 +23,16 @@ Next Step:- Add dependencies <br/>
 }
 ```
 
-Adding Hot Reloading:- <br/> 
+Adding Hot Reloading:- <br/>
 using nodemon :- <br/>
 local server with autoreloading feature. <br/> <br/>
 
 nodemon install <br/>
-1. locally  <br/>
-```
-  npm install nodemon
-  // or
 
+1. locally  <br/>
+
+  npm install nodemon or
+```
   {
     "dependencies":{
         "express":"latest",
@@ -37,17 +40,20 @@ nodemon install <br/>
     }
   }
 ```
-`` npm install``
+
+``npm install``
 
 <br/>
-2. globally <br/>
-`` npm install --global nodemon ``
+2. globally 
+<br/>
+
+``npm install --global nodemon``
 <br/>
 nodemon.cmd <br/>
-nodemon.bat <br/> 
+nodemon.bat <br/>
 global path. <br/>
 <br/>
-npx nodemon index.js => ``server start``. <br/> 
+npx nodemon index.js => ``server start``. <br/>
 ``node nodemon index.js``
 <br/>
 in order to run using npm :- <br/>
@@ -64,6 +70,7 @@ open package.json <br/>
 <br/>
 globally :- <br/>
 open package.json <br/>
+
 ```
 {
     "scripts":{
@@ -73,8 +80,7 @@ open package.json <br/>
 }
 ```
 
-## index.js <br/> 
-<hr/>
+## index.js <br/>
 
 ```
 const express = require('express');
@@ -92,7 +98,8 @@ app.get("/", (req,res)=>{
 
 ```
 
-## MVC Updated Version:- 
+## MVC Updated Version:-
+
 <hr/>
 
 ```
@@ -106,8 +113,8 @@ server.listen(port, ()=>{
 })
 ```
 
+## app.js
 
-## app.js 
 <hr/>
 
 ```
@@ -117,8 +124,10 @@ const app = express();
 module.exports = app;
 ```
 
-## index.js or server.js 
+## index.js or server.js
+
 <hr/>
+
 ```
 const http= require('http');
 const app = require('./app');
@@ -137,6 +146,7 @@ server.listen(port, ()=>{
 All EndPoints, in Api and url fro get,post,put,patch,delete are managed by, routes. <br/>
 <br/>
 ## by default Route :-
+
 ```
 app.get('/xyz-url', (req,res)=>{
     res.send('get-url');
@@ -145,16 +155,14 @@ app.get('/xyz-url', (req,res)=>{
 app.post('/xyz-url', (req,res)=>{
     res.send('post-url');
 });
+
 ```
 
 ## Advance Routing :- 
 <hr/>
-```
 express has inbuilt router.
-```
+
 ## routes 
-<hr/> 
-<br/>
 crud : studentRoute.js <br/>
     get <br/>
     post <br/>
@@ -181,79 +189,89 @@ router.post('/xyz-url', (req,res)=>{
 });
 
 module.export = router;
+
 ```
 <br/>
+
 ## connecting app.js with routes :- <hr/>
 
 1. app.js connect with router. <br/>
 
 ```
+
 const studentRoute = require('./studentRoute');
 const userRoute = require('./userRoute');
 
 app.use('/student',studentRoute);
 app.use('/users',userRoute);
+
 ```
 
 ## Adding Controller to Project:- 
 <hr/>
 
 consider the code of routes <br/>
-	
+ 
 Before controller :-<br/><br/>
-	
+ 
+```
+router.post('/xyz-url',(req,res,next)=>{
+  res.send('post url');
+ });
 ``` 
-	router.post('/xyz-url',(req,res,next)=>{
-	 res.send('post url');
-	});
-```	
 After controller :- <br/>
 ```
-	StudentController.js 
-	//class level code 
-	or 
-	//function level        (next middleware or next closure can be used as callback)
-	                            |
-								|
-	const Student = {
-	getStudent: function(req,res,next){  
-	  //logic
-	}
-	
-	CreateStudent:function(req,res,next){
-		//logic
-	}
-	
-	UpdateStudent:function(req,res,next){
-		//logic
-	}
-	
-	DeleteStudent:function(req,res,next){
-		//logic
-	}
-	
-	}
-	
-	module.export = Student;
+
+StudentController.js 
+ //class level code 
+ or 
+ //function level        (next middleware or next closure can be used as callback)
+        |
+        |
+ const Student = {
+ getStudent: function(req,res,next){  
+   //logic
+ }
+ 
+ CreateStudent:function(req,res,next){
+  //logic
+ }
+ 
+ UpdateStudent:function(req,res,next){
+  //logic
+ }
+ 
+ DeleteStudent:function(req,res,next){
+  //logic
+ }
+ 
+ }
+ 
+ module.export = Student;
+
 ```
 
-##	connect with Route with controller:- 
+## connect with Route with controller:- 
 <hr/>
+
 ```
-	const StudentController = require('./StudentController');
-	
-	router.get('/student-list',StudentController.getStudent);
-	router.post('/register',StudentController.createStudent);
-	router.put('/change-profile',StudentController.UpdateStudent);
-	router.delete('/delete-account',StudentController.DeleteStudent);
+const StudentController = require('./StudentController');
+ 
+ router.get('/student-list',StudentController.getStudent);
+ router.post('/register',StudentController.createStudent);
+ router.put('/change-profile',StudentController.UpdateStudent);
+ router.delete('/delete-account',StudentController.DeleteStudent);
+
 ```
 
-##	control flow of Express Application  or lifeycle Node express 
+## control flow of Express Application  or lifeycle Node express 
 <hr/>
-	
+ 
 ```
-npm ---> package.json ---> start ----> nodemon (not required in live server)---> index.js 
+
+npm ---> package.json ---> start ----> nodemon (not required in live server)---> index.js
 index.js---> config ----> app.js ----> use Middleware -----> router -----> controller
+
 ```
 
 ## Adding pages to the Node Application :-
@@ -265,10 +283,10 @@ for this we can make a pages or static folder in project <br/>
 <br/>
 project structure :-
 <br/>
-```
+
 1. config
 2. controller
-3. model 
+3. model
 4. views
 5. public
 6. routes
@@ -281,25 +299,25 @@ project structure :-
                 | ------------> contact.html
                 | ------------> register.html
                     ......
-                    .....n 
+                    .....n
                     here we can make static folder name also.
                     Note :: All the pages will be loaded in GET Request.
-```
+
    
 ## How to load pages in Node Js :-
  <hr/>
- ```
+
+```
  const path = require('path');
 
     router.get("/home",(req,res,next)=>{
         let home_page = path.join(__dirname, "./pages/home.html")
         res.sendFile(home_page)
     })
+
 ```
 
 ##  Sending 404 Page 
-<br/>
-<br/>
 fallback : fallback when responce is ended without, expectation. <br/>
 error.html <br/>
 or <br/>
@@ -316,7 +334,6 @@ or <br/>
 ```
 
 ## Adding controller to the Application :-
-  <br/>
 controller :- It seperated Business logic from the Application. <br/>
 it acts as middle man, B/w Model and View. <br/>
     Controller takes the data from model and return to view. <br/>
@@ -330,6 +347,7 @@ it acts as middle man, B/w Model and View. <br/>
 ## Normal Function as a controller :- <hr/>
 
 ```
+
 router,get('/home',HomeController.create());
                             |
                             |
@@ -348,12 +366,15 @@ router,get('/home',HomeController.create());
     function create(req,res,next){
         // business logic
     }
+
 ```
 
 
 ## 2. Factory Function :- 
 <hr/>
+
 ```
+
 const Student :{
     create: (req,res,next)=>{
         // logic
@@ -377,11 +398,14 @@ Student.create();
 
 // How to export :-
 module.exports = Student;
+
 ```
 
 ## 3. Using Class controller
 <hr/>
+
 ```
+
 class StudentController
 {
     constructor(){}
@@ -408,7 +432,6 @@ module.exports = StudentController;
 
 // How to import and use:-
 const StudentController = require("../controller/StudentController.js");
-
 
 router.get('/', (req, res, next) =>
 {
@@ -445,4 +468,4 @@ router.get('/show', (req, res, next) =>
 
 
 
-### Thanks for reading. This notes written by prabhat.
+### Thanks for reading. This notes written by prabhat by 💘.
